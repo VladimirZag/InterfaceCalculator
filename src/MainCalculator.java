@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class MainCalculator {
     public static void main(String[] args) {
@@ -8,5 +9,8 @@ public class MainCalculator {
         calculator.setLocationRelativeTo(null);
         calculator.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         calculator.setVisible(true);
+
+        ImageIcon icon = new ImageIcon();
+        calculator.setIconImage(Toolkit.getDefaultToolkit().getImage(MainCalculator.class.getResource("CalculatorIcon.png")));
     }
 }

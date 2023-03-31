@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="InterfaceCalculator:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/InterfaceCalculator_jar</output-path>
+    <root id="archive" name="InterfaceCalculator.jar">
+      <element id="module-output" name="InterfaceCalculator" />
+    </root>
+  </artifact>
+</component>

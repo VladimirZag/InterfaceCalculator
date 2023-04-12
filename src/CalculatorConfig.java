@@ -3,12 +3,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class CalculatorConfig extends JFrame {
     private JButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, bSum, bDif, bMul, bDiv, bEq, bDel, bPoint;
     private JTextField text;
-    private int sum, dif, mul, div, intA, intB;
+    private int sum, dif, mul, div;
+    private long longA, longB;
     private double doubleA, doubleB;
     private String a, b;
 
@@ -38,76 +41,27 @@ public class CalculatorConfig extends JFrame {
         text.setEditable(false);
 
         add(text); add(bSum); add(bDif); add(bMul); add(bDiv); add(b1); add(b2); add(b3); add(b4); add(b5); add(b6); add(b7); add(b8); add(b9); add(b0); add(bDel); add(bEq); add(bPoint);
-        b1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                text.setText(text.getText()+"1");
-                bPoint.setEnabled(true);
-            }
-        });
-        b2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                text.setText(text.getText()+"2");
-                bPoint.setEnabled(true);
-            }
-        });
-        b3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                text.setText(text.getText()+"3");
-                bPoint.setEnabled(true);
-            }
-        });
-        b4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                text.setText(text.getText()+"4");
-                bPoint.setEnabled(true);
-            }
-        });
-        b5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                text.setText(text.getText()+"5");
-                bPoint.setEnabled(true);
-            }
-        });
-        b6.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                text.setText(text.getText()+"6");
-                bPoint.setEnabled(true);
-            }
-        });
-        b7.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                text.setText(text.getText()+"7");
-                bPoint.setEnabled(true);
-            }
-        });
-        b8.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                text.setText(text.getText()+"8");
-                bPoint.setEnabled(true);
-            }
-        });
-        b9.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                text.setText(text.getText()+"9");
-                bPoint.setEnabled(true);
-            }
-        });
-        b0.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                text.setText(text.getText()+"0");
-                bPoint.setEnabled(true);
-            }
-        });
+        List<JButton> buttons = new ArrayList<>();
+        buttons.add(b0);
+        buttons.add(b1);
+        buttons.add(b2);
+        buttons.add(b3);
+        buttons.add(b4);
+        buttons.add(b5);
+        buttons.add(b6);
+        buttons.add(b7);
+        buttons.add(b8);
+        buttons.add(b9);
+        for (int i = 0; i < buttons.size(); i++){
+            int stringI = i;
+            buttons.get(i).addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    text.setText(text.getText() + Integer.toString(stringI));
+                    bPoint.setEnabled(true);
+                }
+            });
+        }
         bDel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -226,32 +180,32 @@ public class CalculatorConfig extends JFrame {
                         b = "";
                     }
                 }else {
-                    intA = Integer.parseInt(a);
-                    intB = Integer.parseInt(b);
+                    longA = Long.parseLong(a);
+                    longB = Long.parseLong(b);
                     if (sum == 1){
-                        int maxLength = Math.min(String.valueOf(intA + intB).length(), 9);
-                        text.setText(String.valueOf(intA + intB).substring(0, maxLength));
+                        int maxLength = Math.min(String.valueOf(longA + longB).length(), 16);
+                        text.setText(String.valueOf(longA + longB).substring(0, maxLength));
                         sum = 0;
                         a = "";
                         b = "";
                     }
                     if (dif == 1){
-                        int maxLength = Math.min(String.valueOf(intA - intB).length(), 9);
-                        text.setText(String.valueOf(intA - intB).substring(0 , maxLength));
+                        int maxLength = Math.min(String.valueOf(longA - longB).length(), 16);
+                        text.setText(String.valueOf(longA - longB).substring(0 , maxLength));
                         dif = 0;
                         a = "";
                         b = "";
                     }
                     if (mul == 1){
-                        int maxLength = Math.min(String.valueOf(intA * intB).length(), 9);
-                        text.setText(String.valueOf(intA * intB).substring(0 , maxLength));
+                        int maxLength = Math.min(String.valueOf(longA * longB).length(), 16);
+                        text.setText(String.valueOf(longA * longB).substring(0 , maxLength));
                         mul = 0;
                         a = "";
                         b = "";
                     }
                     if (div == 1){
-                        int maxLength = Math.min(String.valueOf(intA / intB).length(), 9);
-                        text.setText(String.valueOf(intA / intB).substring(0 , maxLength));
+                        int maxLength = Math.min(String.valueOf(longA / longB).length(), 16);
+                        text.setText(String.valueOf(longA / longB).substring(0 , maxLength));
                         div = 0;
                         a = "";
                         b = "";
